@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/commons/titles.dart';
 import 'package:portfolio/theme/color.dart';
+import 'package:portfolio/utils/launch_url.dart';
 
 class WhatsNextView extends StatelessWidget {
   const WhatsNextView({Key? key}) : super(key: key);
@@ -17,13 +18,22 @@ class WhatsNextView extends StatelessWidget {
               style: TextStyle(color: kPrimaryColor, fontSize: 14),
             ),
             SizedBox(height: 20),
-            Text(
-              "Get In Touch",
-              style: TextStyle(
-                  fontFamily: 'Lato',
-                  fontSize: 40,
-                  color: kCaptionColor,
-                  fontWeight: FontWeight.bold),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: (){
+                  LaunchMethod().launchURL(
+                      "https://www.linkedin.com/in/namrata-tank-62555b208/");
+                },
+                child: Text(
+                  "Get In Touch",
+                  style: TextStyle(
+                      fontFamily: 'Lato',
+                      fontSize: 40,
+                      color: kCaptionColor,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(40),

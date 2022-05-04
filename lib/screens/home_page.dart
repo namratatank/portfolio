@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/about_view.dart';
-import 'package:portfolio/components/build_app_view.dart';
+import 'package:portfolio/components/projects_view.dart';
 import 'package:portfolio/components/intro_view.dart';
 import 'package:portfolio/components/header.dart';
 import 'package:portfolio/components/whats_next_view.dart';
@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                               IntroView(),
                               AboutView(),
                               WorkView(),
-                              BuildAppView(),
+                              ProjectsView(),
                               WhatsNextView(),
                               socialOptionsMobile(context),
                               SizedBox(height: 60),
