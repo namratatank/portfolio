@@ -39,10 +39,15 @@ dependencies:
   # carousel_slider: ^4.1.1
 
   # for page sliding indicator
-  smooth_page_indicator: ^1.0.0+2
+  # smooth_page_indicator: ^1.0.0+2
 
   # for URL launch
   url_launcher: ^6.0.10
+
+  # for open PDF file
+  flutter_cached_pdfview: ^0.4.1
+
+  path_provider: ^2.0.1
 
 dev_dependencies:
   flutter_test:

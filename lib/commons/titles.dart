@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/theme/color.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 buildTitle(
 {
@@ -29,12 +30,18 @@ buildTitle(
               fontWeight: FontWeight.bold),
         ),
         SizedBox(width: 10),
-        Padding(
-          padding: EdgeInsets.only(right: 20),
-          child: Container(
-            color: kCaptionColorOp,
-            height: 1,
-            width: MediaQuery.of(context).size.width * 0.1,
+        ResponsiveVisibility(
+          visible: false,
+          visibleWhen: [
+            Condition.largerThan(name: MOBILE),
+          ],
+          child: Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: Container(
+              color: kCaptionColorOp,
+              height: 1,
+              width: MediaQuery.of(context).size.width * 0.1,
+            ),
           ),
         ),
         // SizedBox(

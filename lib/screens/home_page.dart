@@ -1,66 +1,29 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/components/about_view.dart';
-import 'package:portfolio/components/projects_view.dart';
-import 'package:portfolio/components/intro_view.dart';
-import 'package:portfolio/components/header.dart';
-import 'package:portfolio/components/whats_next_view.dart';
-import 'package:portfolio/components/work_view.dart';
 import 'package:portfolio/models/header_items_model.dart';
+import 'package:portfolio/pageview/about_view.dart';
+import 'package:portfolio/pageview/header.dart';
+import 'package:portfolio/pageview/intro_view.dart';
+import 'package:portfolio/pageview/projects_view.dart';
+import 'package:portfolio/pageview/whats_next_view.dart';
+import 'package:portfolio/pageview/work_view.dart';
 import 'package:portfolio/utils/launch_url.dart';
 import 'package:portfolio/theme/color.dart';
 import 'package:portfolio/utils/globals.dart';
-import 'package:portfolio/utils/screen_helper.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:responsive_framework/responsive_value.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
+  ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+    Navigator.maybePop(context);
     return Scaffold(
       key: Globals.scaffoldKey,
-      endDrawer: Container(
-        color: kPrimaryColor,
-        child: Drawer(
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
-              child: ListView.separated(
-                  itemBuilder: (context, index) => headerItems[index].isButton
-                      ? MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: kDangerColor,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: TextButton(
-                                onPressed: headerItems[index].ontap,
-                                child: Text(
-                                  headerItems[index].title,
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : ListTile(
-                          title: Text(
-                            headerItems[index].title,
-                            style: TextStyle(fontSize: 16, color: Colors.white),
-                          ),
-                        ),
-                  separatorBuilder: (context, index) => SizedBox(height: 20),
-                  itemCount: headerItems.length),
-            ),
-          ),
-        ),
-      ),
+      endDrawer: drawerView(),
       body: Container(
         child: Column(
           children: [
@@ -85,28 +48,26 @@ class HomePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               IntroView(),
-                              AboutView(),
-                              WorkView(),
-                              ProjectsView(),
-                              WhatsNextView(),
+                              Container(
+                                  key: Globals.aboutKey, child: AboutView()),
+                              SizedBox(height: 100),
+                              Container(
+                                  key: Globals.experienceKey,
+                                  child: WorkView()),
+                              SizedBox(height: 100),
+                              Container(
+                                  key: Globals.workKey, child: ProjectsView()),
+                              Container(
+                                  key: Globals.contactKey,
+                                  child: WhatsNextView()),
                               socialOptionsMobile(context),
                               SizedBox(height: 60),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Designed & Built by Namrata Tank",
-                                    style: TextStyle(color: kCaptionColorOp),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Icon(
-                                    Icons.favorite,
-                                    color: Colors.blue.shade900,
-                                    size: 20,
-                                  ),
-                                  Text("Flutter",
-                                      style: TextStyle(color: kCaptionColorOp))
-                                ],
+                              Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Designed & Built by Namrata Tank 💙 Flutter",
+                                  style: TextStyle(color: kCaptionColorOp),
+                                ),
                               ),
                               SizedBox(height: 50),
                             ],
@@ -114,39 +75,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    ResponsiveVisibility(
-                      visible: false,
-                      visibleWhen: [
-                        Condition.largerThan(name: TABLET),
-                      ],
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.08,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: Column(
-                            children: [
-                              Spacer(),
-                              RotatedBox(
-                                quarterTurns: 1,
-                                child: Text(
-                                  "tanknamrata.tn@gmail.com",
-                                  style: TextStyle(
-                                      color: kCaptionColorOp,
-                                      fontSize: 14,
-                                      letterSpacing: 3),
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              Container(
-                                color: kCaptionColorOp,
-                                width: 1,
-                                height: 150,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
+                    mailIdSideView(context),
                   ],
                 ),
               ),
@@ -261,6 +190,88 @@ class HomePage extends StatelessWidget {
               },
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  mailIdSideView(BuildContext context) {
+    return ResponsiveVisibility(
+      visible: false,
+      visibleWhen: [
+        Condition.largerThan(name: TABLET),
+      ],
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.08,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: Column(
+            children: [
+              Spacer(),
+              RotatedBox(
+                quarterTurns: 1,
+                child: Text(
+                  "tanknamrata.tn@gmail.com",
+                  style: TextStyle(
+                      color: kCaptionColorOp, fontSize: 14, letterSpacing: 3),
+                ),
+              ),
+              SizedBox(height: 10),
+              Container(
+                color: kCaptionColorOp,
+                width: 1,
+                height: 150,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  drawerView() {
+    return Container(
+      color: kPrimaryColor,
+      child: Drawer(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+            child: ListView.separated(
+                itemBuilder: (context, index) => headerItems[index].isButton
+                    ? Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: kDangerColor,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: TextButton(
+                            onPressed: (){
+                              LaunchMethod().launchURL("https://drive.google.com/file/d/1VLyabcTLi8H19hzOtl-VGKFOXAST25AS/view?usp=sharing");
+                            },
+                            child: Text(
+                              headerItems[index].title,
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      )
+                    : ListTile(
+                        title: Text(
+                          headerItems[index].title,
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                          if (headerItems[index].ontap != null) {
+                            headerItems[index].ontap!();
+                          }
+                        },
+                      ),
+                separatorBuilder: (context, index) => SizedBox(height: 20),
+                itemCount: headerItems.length),
+          ),
         ),
       ),
     );
