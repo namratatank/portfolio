@@ -246,9 +246,7 @@ class HomePage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: TextButton(
-                            onPressed: (){
-                              LaunchMethod().launchURL("https://drive.google.com/file/d/1VLyabcTLi8H19hzOtl-VGKFOXAST25AS/view?usp=sharing");
-                            },
+                            onPressed: headerItems[index].ontap,
                             child: Text(
                               headerItems[index].title,
                               style:

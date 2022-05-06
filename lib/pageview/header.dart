@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/models/header_items_model.dart';
 import 'package:portfolio/theme/color.dart';
 import 'package:portfolio/utils/globals.dart';
-import 'package:portfolio/utils/launch_url.dart';
 import 'package:portfolio/utils/screen_helper.dart';
 import 'package:responsive_framework/responsive_value.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+
 
 
 class Header extends StatelessWidget {
@@ -100,9 +99,7 @@ class Header extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: TextButton(
-              onPressed: () {
-                LaunchMethod().launchURL("https://drive.google.com/file/d/1VLyabcTLi8H19hzOtl-VGKFOXAST25AS/view?usp=sharing");
-              },
+              onPressed: item.ontap,
               child: Text(item.title, style: TextStyle(fontSize: 12, color: kNameColor, fontWeight: FontWeight.bold),
               ),
             ),
@@ -120,26 +117,6 @@ class Header extends StatelessWidget {
     )
       ).toList()
     ),
-    );
-  }
-}
-
-class PDFViewerFromAsset extends StatelessWidget {
-  final String pdfAssetPath;
-  const PDFViewerFromAsset({Key? key, required this.pdfAssetPath}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: PDF(
-        enableSwipe: true,
-        swipeHorizontal: true,
-        autoSpacing: false,
-        pageFling: false,
-      ).fromAsset(
-        pdfAssetPath,
-        errorWidget: (dynamic error) => Center(child: Text(error.toString())),
-      ),
     );
   }
 }

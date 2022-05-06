@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/globals.dart';
+import 'package:portfolio/utils/launch_url.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HeaderItems {
@@ -41,6 +42,7 @@ List<HeaderItems> headerItems = [
   HeaderItems(
     title: 'RESUME',
     ontap: () {
+      LaunchMethod().launchURL("https://raw.githubusercontent.com/namratakacha/portfolio/ac9fcc4722d5e11ccce2474a8e95730b50d5c573/assets/images/resume.pdf");
     },
     isButton: true,
   ),
