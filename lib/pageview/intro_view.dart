@@ -38,15 +38,14 @@ buildButton() {
     child: SizedBox(
       height: 65,
       width: 200,
-      child: FlatButton(
-        color: kBackgroundColor,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(backgroundColor: kBackgroundColor, shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6.0),
+            side: BorderSide(color: kPrimaryColor))),
         onPressed: () {
           LaunchMethod().launchURL(
               "https://www.linkedin.com/in/namrata-tank-62555b208/");
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6.0),
-            side: BorderSide(color: kPrimaryColor)),
         child: Text(
           "Get In Touch",
           style: TextStyle(
