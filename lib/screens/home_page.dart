@@ -101,7 +101,7 @@ class HomePage extends StatelessWidget {
             buildSocialIcon(
               iconImage: "assets/images/gmail.png",
               onTap: () {
-                LaunchMethod().launchURL("https://mail.google.com/mail   ");
+                LaunchMethod().launchURL("https://mail.google.com/mail");
               },
             ),
             SizedBox(height: 30.0),
