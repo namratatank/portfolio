@@ -167,7 +167,7 @@ class HomePage extends StatelessWidget {
               iconImage: "assets/images/github.png",
               onTap: () {
                 LaunchMethod().launchURL(
-                    "https://github.com/namratakacha?tab=repositories");
+                    "https://github.com/namratatank?tab=repositories");
               },
             ),
             buildSocialIcon(
