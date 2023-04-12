@@ -42,7 +42,7 @@ List<HeaderItems> headerItems = [
   HeaderItems(
     title: 'RESUME',
     ontap: () {
-      LaunchMethod().launchURL("https://raw.githubusercontent.com/namratakacha/portfolio/ac9fcc4722d5e11ccce2474a8e95730b50d5c573/assets/images/resume.pdf");
+      LaunchMethod().launchURL("https://raw.githubusercontent.com/namratakacha/portfolio/ac9fcc4722d5e11ccce2474a8e95730b50d5c573/assets/images/NamrataTankResume.pdf");
     },
     isButton: true,
   ),
